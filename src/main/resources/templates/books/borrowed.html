@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #add8e6;">
+	<a class="navbar-brand">
+		<img src="https://uxwing.com/wp-content/themes/uxwing/download/18-education-school/read-book.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
+		BookManager
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-item nav-link" th:href="@{/books/available}">Elérhető könyvek</a>
+			<a class="nav-item nav-link active" th:href="@{/books/borrowed}">Kölcsönzött könyvek</a>
+			<a class="nav-item nav-link" th:href="@{/books/borrowing}">Könyv kölcsönzés</a>
+			<a class="nav-item nav-link" th:href="@{/books/add}">Könyv hozzáadása</a>
+		</div>
+	</div>
+</nav>
+<h1 style="padding:3%" >Kölcsönzött könyvek: </h1>
+<div class="container">
+	<table class="table datatable">
+		<thead>
+		<tr>
+			<th>Kölcsönzés dátuma</th>
+			<th>Kölcsönző neve</th>
+			<th>Könyv ID</th>
+			<th>Szerző</th>
+			<th>Cím</th>
+			<th>Oldalszám</th>
+			<th>Megjelenés</th>
+			<th> </th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:if="${#lists.isEmpty(borrowedBooks)}">
+			<td colspan="8"><h3>Nincs kölcsönzött könyv.<h3></td>
+		</tr>
+		<tr th:each="borrowing : ${borrowedBooks}">
+			<td th:text="${borrowing.borrowingDate}"></td>
+			<td th:text="${borrowing.borrower}"></td>
+			<td th:text="${borrowing.id}"></td>
+			<td th:text="${borrowing.author}"></td>
+			<td th:text="${borrowing.title}"></td>
+			<td th:text="${borrowing.totalPages}"></td>
+			<td th:text="${borrowing.publishedDate}"></td>
+			<td>
+				<a th:href="@{'borrowed/remove/'+${borrowing.id}}" type="button" class="btn btn-danger">Törlés</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
