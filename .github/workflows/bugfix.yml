@@ -1,4 +1,4 @@
-name: Feature workflow
+name: Bugfix workflow
 
 on:
   push:
