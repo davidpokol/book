@@ -38,6 +38,6 @@ jobs:
         # Overwrite local artifact version
         mvn -B versions:set -DnewVersion="$version" --file pom.xml
         mvn -B deploy --file pom.xml
-        cp "target/book-app-${version}.jar" "target/book-app.jar"
+        cp "target/bookapp-${version}.jar" "target/bookapp.jar"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

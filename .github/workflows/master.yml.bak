@@ -6,7 +6,7 @@ on:
 env:
   DOCKER_REGISTRY: ghcr.io
   DOCKER_IMAGE_NAME: ${{ github.repository }}
-  HEROKU_APP_NAME: 'fruitswebapp-progkor'
+  HEROKU_APP_NAME: 'davidsbookmanager'
 
 jobs:
   build:
@@ -89,7 +89,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify --file pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=VZsolt23_fruitswebapp-progkor -Dsonar.scm.exclusions.disabled=true
+        run: mvn -B verify --file pom.xml org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=davidpokol_davidsbookmanager -Dsonar.scm.exclusions.disabled=true
   deploy:
     name: Deploy to Heroku
     needs: build
@@ -107,8 +107,8 @@ jobs:
         run: heroku container:login
       - name: Get image from packages, tag and push to Heroku
         run: |
-          docker pull ghcr.io/davidpokol/bookmanager:${{ env.ARTIFACT_VERSION }}
-          docker tag ghcr.io/davidpokol/bookmanager:${{ env.ARTIFACT_VERSION }} registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
+          docker pull ghcr.io/davidpokol/book:${{ env.ARTIFACT_VERSION }}
+          docker tag ghcr.io/davidpokol/book:${{ env.ARTIFACT_VERSION }} registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
           docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
         env:
           ARTIFACT_VERSION: ${{ needs.build.outputs.artifactVersion }}
