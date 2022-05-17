@@ -4,9 +4,6 @@ on:
   push:
     branches:
     - 'feature/**'
-    - 'bugfix/**'
-    - 'hotfix/**'
-    - 'release/**'
 
 env:
   DOCKER_REGISTRY: ghcr.io
