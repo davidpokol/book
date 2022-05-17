@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class BookServiceTest {
+class BookServiceTest {
 
   public static final Book BOOK_ONE = new Book(
     1L,
@@ -72,7 +72,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void getAllAvailableBooksShouldReturnAllBooks() {
+  void getAllAvailableBooksShouldReturnAllBooks() {
 
     //Given - When
     List<Book> actual = underTest.getAllAvailableBooks();
@@ -82,7 +82,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void getBookByIdShouldReturnWithTheProperBook() {
+  void getBookByIdShouldReturnWithTheProperBook() {
 
     //Given - When
     Book actual = underTest.getBookById(BOOK_ONE_ID);
@@ -92,14 +92,14 @@ public class BookServiceTest {
   }
 
   @Test
-  public void getBookByIdShouldThrowNotFoundExceptionWhenGivenIdNotAssignedToAnyBook() {
+  void getBookByIdShouldThrowNotFoundExceptionWhenGivenIdNotAssignedToAnyBook() {
 
     //When - Then
     Assertions.assertThrows(NotFoundException.class, () -> underTest.getBookById(NON_EXISTENT_ID));
   }
 
   @Test
-  public void addBookShouldReturnWithTheTheAddedBook() {
+  void addBookShouldReturnWithTheTheAddedBook() {
 
     //Given
     Book expected = BOOK_THREE_WITH_ID;
@@ -112,7 +112,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void addBookShouldAddBookEvenThereIsABookWithTheSameAuthorInTheList() {
+  void addBookShouldAddBookEvenThereIsABookWithTheSameAuthorInTheList() {
 
     //Given
     List<Book> expected = List.of(BOOK_ONE, BOOK_TWO, BOOK_FOUR);
@@ -126,7 +126,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void addBookShouldAddBookEvenThereIsABookWithTheSameTitleInTheList() {
+  void addBookShouldAddBookEvenThereIsABookWithTheSameTitleInTheList() {
 
     //Given
     List<Book> expected = List.of(BOOK_ONE, BOOK_TWO, BOOK_FIVE);
@@ -140,7 +140,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void addBookShouldNotAddBookIfItIsAlreadyExistsInTheList() {
+  void addBookShouldNotAddBookIfItIsAlreadyExistsInTheList() {
 
     //Given
     List<Book> expected = BOOKS;
@@ -154,7 +154,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void replaceBookShouldReturnWithTheGivenBook() {
+  void replaceBookShouldReturnWithTheGivenBook() {
 
     //Given - When
     Book actual = underTest.replaceBook(BOOK_THREE_WITH_ID);
@@ -164,7 +164,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void replaceBookShouldAddBookToTheBookListAtTheProperIndex() {
+  void replaceBookShouldAddBookToTheBookListAtTheProperIndex() {
 
     //Given
     underTest = new BookService(BOOKS_WITH_ONLY_BOOK_TWO);
@@ -177,7 +177,7 @@ public class BookServiceTest {
   }
 
   @Test
-  public void removeByIdShouldRemoveTheGivenBookFromTheList() {
+  void removeByIdShouldRemoveTheGivenBookFromTheList() {
 
     //Given
     List<Book> expected = BOOKS_WITH_ONLY_BOOK_TWO;

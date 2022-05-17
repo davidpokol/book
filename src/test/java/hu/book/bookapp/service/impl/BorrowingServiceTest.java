@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BorrowingServiceTest {
+class BorrowingServiceTest {
 
 	BorrowingService underTest;
 	BookService bookService;
@@ -66,13 +66,13 @@ public class BorrowingServiceTest {
 	public static final Long BORROWED_BOOK_ID = BORROWED_BOOK_ONE.getId();
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		bookService = new BookService();
 		underTest = new BorrowingService(bookService);
 	}
 
 	@Test
-	public void getAllBorrowedBooksShouldReturnEmptyList() {
+	void getAllBorrowedBooksShouldReturnEmptyList() {
 
 		//Given
 		List<Borrowing> expected = Collections.emptyList();
@@ -85,7 +85,7 @@ public class BorrowingServiceTest {
 	}
 
 	@Test
-	public void borrowShouldReturnWithTheCompleteBorrowingObject() {
+	void borrowShouldReturnWithTheCompleteBorrowingObject() {
 
 		//Given
 		Borrowing expected = BORROWED_BOOK_ONE;
@@ -97,7 +97,7 @@ public class BorrowingServiceTest {
 		Assertions.assertEquals(expected, actual);
 	}
 	@Test
-	public void borrowShouldReturnWithTheGivenBorrowingObjectToTheBorrowingListInCaseOfNotMatchingTheTitles() {
+	void borrowShouldReturnWithTheGivenBorrowingObjectToTheBorrowingListInCaseOfNotMatchingTheTitles() {
 
 		//Given
 		Borrowing expected = INVALID_RAW_BORROWING_BOOK;
@@ -110,7 +110,7 @@ public class BorrowingServiceTest {
 	}
 
 	@Test
-	public void borrowShouldAddTheGivenBorrowingObjectToTheBorrowingListAtTheProperIndex() {
+	void borrowShouldAddTheGivenBorrowingObjectToTheBorrowingListAtTheProperIndex() {
 
 		//Given
 		List<Borrowing> expected = List.of(BORROWED_BOOK_ONE, BORROWED_BOOK_TWO);
@@ -124,7 +124,7 @@ public class BorrowingServiceTest {
 	}
 
 	@Test
-	public void deleteBorrowShouldRemoveTheProperBorrowingObjectDeterminedById() {
+	void deleteBorrowShouldRemoveTheProperBorrowingObjectDeterminedById() {
 
 		//Given
 		underTest.borrow(RAW_BORROWING_ONE);
@@ -138,7 +138,7 @@ public class BorrowingServiceTest {
 	}
 
 	@Test
-	public void deleteBorrowShouldNotChangeBorrowingListInCaseOfBadId() {
+	void deleteBorrowShouldNotChangeBorrowingListInCaseOfBadId() {
 
 		//Given
 		underTest.borrow(RAW_BORROWING_ONE);
