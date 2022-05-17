@@ -3,7 +3,7 @@ name: Feature workflow
 on:
   push:
     branches:
-    - 'feature/**'
+    - 'bugfix/**'
 
 env:
   DOCKER_REGISTRY: ghcr.io
