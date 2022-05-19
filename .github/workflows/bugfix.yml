@@ -37,7 +37,7 @@ jobs:
           echo "ARTIFACT_VERSION=$version" >> $GITHUB_ENV
           # Overwrite local artifact version
           mvn -B versions:set -DnewVersion="$version" --file pom.xml
-          mvn -B deploy --file pom.xml
+          mvn -B install --file pom.xml
           cp "target/book-app-${version}.jar" "target/book-app.jar"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
